@@ -1,0 +1,17 @@
+import numpy as np
+
+def adjacency_list_vertex_face(F):
+    """
+    build a vertex-face adjacency list such that V2F[vertex_index] = [adjacent_face_indices]
+    Inputs
+    F: |F|x3 array of face indices
+    Outputs
+    V2F: list of lists with so that V2F[v] = [fi, fj, ...]
+    """
+    F = np.array(F)
+    nV = F.max() + 1
+    V2F = [[] for _ in range(nV)]
+    for f in range(F.shape[0]):
+        for s in range(F.shape[1]):
+            V2F[F[f,s]].append(int(f))
+    return V2F
